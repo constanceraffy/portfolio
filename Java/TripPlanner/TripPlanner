@@ -1,0 +1,62 @@
+//Created on 30.08.2020; Microsoft: DEV276x, Assignment 1, TripPlanner//
+
+import java.util.Scanner;
+
+public class TripPlanner {
+    public static void main(String[] args){
+        greetings();
+        travelTimeBudget();
+        timeDifference();
+        countryArea();
+    }
+
+    public static void greetings() { // Greet user, ask name and destination.
+        Scanner input = new Scanner(System.in);
+        System.out.println("Welcome to Vacation Planner!");
+        System.out.print("What is your name? ");
+        String name = input.nextLine();
+        System.out.print("Nice to meet you "+name+", where are you travelling to? ");
+        String city = input.nextLine();
+        System.out.println("Great! "+city+" sounds like a great trip");
+        System.out.println("***********\n");
+
+    }
+
+    public static void travelTimeBudget() { // Ask user how much time and money they are budgeting
+        Scanner input = new Scanner(System.in);
+        System.out.print("How many days are you going to spend travelling? ");
+        int days = input.nextInt();
+        System.out.print("How much money, in USD, are you planning to spend on your trip? ");
+        double budget = input.nextDouble();
+        System.out.print("What is the three letter currency symbol for your travel destination? ");
+        String currency= input.next();
+        System.out.print("How many "+currency+" are there in 1 USD? ");
+        double xrate = input.nextDouble();
+        System.out.println();
+        int hours = days * 24;
+        int minutes = hours * 60;
+        System.out.println("If you are travelling for "+days+" days that is the same as "+hours+" hours or "+minutes+" minutes");
+        System.out.println("If you are going to spend $"+(int)budget+" USD that means per day you can spend up to "+ ((int)((budget/days)*100)/100.0)+" USD"); //
+        System.out.println("Your total budget in "+currency+" is "+((int)(budget*xrate*100)/100.0)+" MXC, which per day is "+ ((int)((budget*xrate)/days*100)/100.0)+" MXC" );
+        System.out.println("***********\n");
+    }
+
+    public static void timeDifference() { // Calculating time difference
+        Scanner input = new Scanner(System.in);
+        System.out.print("What is the time difference, in hours, between your home and your destination? ");
+        int timeDifference = input.nextInt();
+        int x = (24 + timeDifference)%24; // midnight
+        int y = (24 + 12 + timeDifference)%24; // noon
+        System.out.println("That means that when it is midnight at home it will be "+ x +":00 in your travel destination and when it is noon at home it will be "+ y+":00");
+        System.out.println("***********\n");
+    }
+
+    public static void countryArea() { // Converting area from km2 to miles2
+        // km2 * 0.386102 = square2
+        Scanner input = new Scanner(System.in);
+        System.out.print("What is the square area of your destination in km2? ");
+        int area = input.nextInt();
+        System.out.println("In miles2 that is " + ((int)((area*0.386102)*10)/10.0));
+        System.out.println("***********");
+    }
+}
